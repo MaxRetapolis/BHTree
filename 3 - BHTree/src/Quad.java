@@ -1,4 +1,4 @@
-
+// last test
 public class Quad {
 	private double x_cen, y_cen, quad_length;
 	
