@@ -26,9 +26,19 @@ public class BHTree {
 					else if(this.SE_T.quad.contains(item.X, item.Y)) {this.SE_T.insertBody(item);}
 				} 
 				else {
-					// replace body with centermass, move body to the quadrant??
-				}
-				}
+					Body temp = this.body;
+					this.body = this.body.centerMass(item);
+					// find proper quad for this.body; 
+						if(this.NW_T.quad.contains(temp.X, temp.Y)) {this.NW_T.insertBody(temp);}
+						else if(this.NE_T.quad.contains(temp.X, temp.Y)) {this.NE_T.insertBody(temp);}
+						else if(this.SW_T.quad.contains(temp.X, temp.Y)) {this.SW_T.insertBody(temp);}
+						else if(this.SE_T.quad.contains(temp.X, temp.Y)) {this.SE_T.insertBody(temp);}
+						
+					this.insertBody(item); // close loop, insert item
+						
+					} 
+				
+			}
 		} else {
 			StdOut.println("Body is outside of BHTree Universe. Body ignored");
 		}
@@ -45,9 +55,7 @@ public class BHTree {
 	}
 
 	
-	// Check if body is empty, if not - check NW_T...`s quad`s for contains, check if empty, if not - split the tree
 	
-	// methods: "figure out what is isExternal" ; insert body;
 	
 	// constructors NW_Q, NE_Q, SW_Q, SE_Q
 	
